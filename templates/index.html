@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Deteksi Rambu Lalu Lintas</title>
+
+  <!-- style CSS untuk tampilan halaman -->
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 50px;
+      text-align: center;
+      transition: background-color 0.4s, color 0.4s;
+    }
+    /* untuk mengatur mode terang */
+    body.light {
+      background: linear-gradient(to bottom right, #e0f7fa, #fffde7);
+      color: #212121;
+    }
+    /* untuk mengatur mode gelap */
+    body.dark {
+      background: linear-gradient(to bottom right, #121212, #1f1f1f);
+      color: #e0e0e0;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    #videoStream {
+      width: 100%;
+      max-width: 1000px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .button-group {
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #2196f3;
+      border: none;
+      color: white;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 8px rgba(33, 150, 243, 0.2);
+    }
+
+    button:hover {
+      background-color: #1976d2;
+      transform: scale(1.05);
+    }
+
+    .dark button {
+      background-color: #673ab7;
+      box-shadow: 0 4px 8px rgba(103, 58, 183, 0.2);
+    }
+
+    .dark button:hover {
+      background-color: #512da8;
+    }
+
+    #history {
+      margin-top: 40px;
+      text-align: left;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .entry {
+      margin-bottom: 8px;
+      padding: 8px 12px;
+      background-color: rgba(33, 150, 243, 0.1);
+      border-left: 4px solid #2196f3;
+      border-radius: 4px;
+    }
+
+    .dark .entry {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-left-color: #ffeb3b;
+    }
+  </style>
+</head>
+
+<body class="light">
+  <h1>Deteksi Rambu Lalu Lintas</h1>
+  <!-- gambar streaming video kamera, URL disediakan oleh Flask -->
+  <img id="videoStream" src="{{ url_for('video') }}" alt="Streaming Kamera">
+
+  <div class="button-group">
+    <!-- tombol hanya tampil tanpa fungsi JS -->
+    <button disabled>Nyalakan Kamera</button>  
+    <button disabled>Matikan Kamera</button>
+    <button disabled>Mode Gelap</button>
+  </div>
+
+   <!-- bagian riwayat deteksi rambu -->
+  <div id="history">
+    <h3>Riwayat Deteksi</h3>
+    <div id="log"></div>
+  </div>
+</body>
+</html>
